@@ -23,9 +23,14 @@ public abstract class SmoothResourceBar : ResourceBar
         StopAnimation();
 
         if (_easeSpeed > 0f)
+        {
             _resourceUpdateCoroutine = StartCoroutine(UpdateResource(resource));
+        }
         else
-            SetResource(_targetResource);
+        {
+            SetResource(resource);
+            _targetResource = resource;
+        }
     }
 
     protected override void OnMaxResourceChanged(int maxResource)
