@@ -25,7 +25,7 @@ public abstract class SmoothResourceBar : ResourceBar
         if (_easeSpeed > 0f)
             _resourceUpdateCoroutine = StartCoroutine(UpdateResource(resource));
         else
-            _slider.value = resource;
+            SetResource(_targetResource);
     }
 
     protected override void OnMaxResourceChanged(int maxResource)
