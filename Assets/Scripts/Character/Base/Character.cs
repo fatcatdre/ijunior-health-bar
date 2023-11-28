@@ -10,13 +10,13 @@ public abstract class Character : MonoBehaviour
     public int Health => _health;
     public int MaxHealth => _maxHealth;
 
-    public event UnityAction<int> HealthChanged;
-    public event UnityAction<int> MaxHealthChanged;
+    public event UnityAction<int, int> HealthChanged;
 
     protected virtual void Start()
     {
+        _health = _maxHealth;
+
         SetMaxHealth(_maxHealth);
-        SetHealth(_maxHealth);
     }
 
     public virtual void SetMaxHealth(int maxHealth)
@@ -25,8 +25,8 @@ public abstract class Character : MonoBehaviour
 
         if (_health > _maxHealth)
             SetHealth(_health);
-
-        MaxHealthChanged?.Invoke(_maxHealth);
+        else
+            HealthChanged?.Invoke(_health, _maxHealth);
     }
 
     public virtual void TakeDamage(int damage)
@@ -43,6 +43,6 @@ public abstract class Character : MonoBehaviour
     {
         _health = Mathf.Clamp(health, 0, _maxHealth);
 
-        HealthChanged?.Invoke(_health);
+        HealthChanged?.Invoke(_health, _maxHealth);
     }
 }

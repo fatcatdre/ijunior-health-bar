@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public abstract class ResourceText : ResourceDisplay
+public class TextResourceRenderer : ResourceRenderer
 {
     [SerializeField] private TMP_Text _text;
     [SerializeField] private string _resourceName;
@@ -9,21 +9,15 @@ public abstract class ResourceText : ResourceDisplay
     private int _resource;
     private int _maxResource;
 
-    protected override void OnResourceChanged(int resource)
+    public override void Render(int resource, int maxResource)
     {
         _resource = resource;
-
-        DisplayResource();
-    }
-
-    protected override void OnMaxResourceChanged(int maxResource)
-    {
         _maxResource = maxResource;
 
         DisplayResource();
     }
 
-    protected virtual void DisplayResource()
+    private void DisplayResource()
     {
         _text.text = $"{_resourceName}: {_resource} / {_maxResource}";
     }
