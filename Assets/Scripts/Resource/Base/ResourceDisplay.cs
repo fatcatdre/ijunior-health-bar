@@ -4,4 +4,5 @@ using UnityEngine;
 public abstract class ResourceDisplay : MonoBehaviour
 {
     [SerializeField] protected Character _character;
+    [SerializeField] protected ResourceRenderer[] _resourceRenderers;
 }

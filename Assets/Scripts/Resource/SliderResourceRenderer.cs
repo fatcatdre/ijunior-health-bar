@@ -11,10 +11,10 @@ public class SliderResourceRenderer : ResourceRenderer
     private float _targetResource;
     private Coroutine _resourceUpdateCoroutine;
 
-    private void Start()
+    private void Awake()
     {
         if (_isFullAtStart)
-            StartCoroutine(UpdateSliderOnStart());
+            StartCoroutine(UpdateSliderOnAwake());
     }
 
     public override void Render(int resource, int maxResource)
@@ -47,7 +47,7 @@ public class SliderResourceRenderer : ResourceRenderer
         }
     }
 
-    private IEnumerator UpdateSliderOnStart()
+    private IEnumerator UpdateSliderOnAwake()
     {
         float originalEaseSpeed = _easeSpeed;
         _easeSpeed = 0f;

@@ -3,9 +3,8 @@ using UnityEngine.Events;
 
 public abstract class Character : MonoBehaviour
 {
+    [SerializeField] protected int _health;
     [SerializeField] protected int _maxHealth;
-
-    protected int _health;
 
     public int Health => _health;
     public int MaxHealth => _maxHealth;
@@ -14,9 +13,7 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Start()
     {
-        _health = _maxHealth;
-
-        SetMaxHealth(_maxHealth);
+        HealthChanged?.Invoke(_health, _maxHealth);
     }
 
     public virtual void SetMaxHealth(int maxHealth)
